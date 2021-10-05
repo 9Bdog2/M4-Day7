@@ -1,26 +1,30 @@
-import { Component } from 'react'
+import {useState, useEffect} from 'react'
 import CommentList from './CommentList'
 import AddComment from './AddComment'
 import Loading from './Loading'
 import Error from './Error'
 
-class CommentArea extends Component {
+const CommentArea = () => {
 
-    state = {
+    /* state = {
         comments: [], // comments will go here
         isLoading: false,
         isError: false
-    }
+    } */
 
-    componentDidUpdate = async (prevProps) => {
-        if (prevProps.asin !== this.props.asin) {
+    const [comments, setComments] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
+    const [isError, setIsError] = useState(false)
+
+    useEffect( () => {
+        const fetchFunction = async () => {
             this.setState({
                 isLoading: true
             })
             try {
                 let response = await fetch('https://striveschool-api.herokuapp.com/api/comments/' + this.props.asin, {
                     headers: {
-                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGI3OWY5NTgxNmI1YjAwMTU5NDA3NDAiLCJpYXQiOjE2MjI2NDY2NzcsImV4cCI6MTYyMzg1NjI3N30.y-rBwB5WAQOWBvWrLlAgTQUrbGulxd2M6cWH3VLyGLw'
+                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRiMWRlMDRiYjUzZDAwMTViMTllZDEiLCJpYXQiOjE2MzIzMTI4MDAsImV4cCI6MTYzMzUyMjQwMH0.ZEiTPl6hBe2UEm5T239Bdd_a6OldaCdb8ShgjSK-vsI'
                     }
                 })
                 console.log(response)
@@ -36,9 +40,10 @@ class CommentArea extends Component {
                 this.setState({ isLoading: false, isError: true })
             }
         }
-    }
+        
+    }, [] )
 
-    render() {
+    
         return (
             <div>
                 {this.state.isLoading && <Loading />}
@@ -47,7 +52,7 @@ class CommentArea extends Component {
                 <CommentList commentsToShow={this.state.comments} />
             </div>
         )
-    }
+    
 }
 
 export default CommentArea
