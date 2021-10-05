@@ -1,0 +1,93 @@
+Hooks in React 
+
+Where React is heading in the future 
+
+Lifecycle methods
+
+Understand Hooks and use them in your application 
+
+React + Hooks
+Latest addition in ReactJs from 16.8 version 
+
+they grew in popularity, future of React
+
+React Hooks => State and Lifecycle in functional Components
+they provide anchor points to hook onto for accessing features that previously were exclusive of Class Components
+
+Hooks intro 
+useState and useEffect
+useContext
+
+useMemo and useCallback for performance
+
+Pros
+easy to start with
+use function instead of classes
+great for decoupling logic from react componentes
+they may become the future of the whole React library
+Cons
+hard to master
+they don't replace 100% functionalities of class components
+once you're application grows they may become harder to read than classes
+they are still not enforced 100% by React dev team
+
+2 simple rules 
+-use React hooks in React Functional Components(no class components, no regular JS)
+-use React hooks always at the top level of your Component, don't nest them inside other functions, don't put tehm after the return 
+
+npx create-react-app hooks-app
+
+npm i bootstrap@4.6.0 react-bootstrap
+
+rules of hooks 1 and 2 
+
+write before the return 
+React hooks provide state&life cycle functionalities to functional components
+useState => makes us create&access state variables
+useEffect => replace componentDidMount & componentDidUpdate and componentWillUnmount
+
+useStates creates a state variable and a function capable of changing its value 
+
+const [name, setName] = useState('')
+const [counter, setCounter] = useState(0)
+//in a class component
+state = {
+	name : '',
+	counter : 0
+}
+
+{counter}
+{name}
+
+You cannot put hooks in conditional statements
+
+useState
+UseEffect-is a hook can replace components ("componentDidMount")
+takes the code you want to execute
+
+useEffect(() => {
+//for specific changes
+	console.log("..")
+}, [counter])
+
+
+useEffect(() => {
+//for all changes
+	console.log("..")
+})
+
+useEffect(() => {
+//similar to componentDidMount
+	console.log("..")
+}, [])
+
+useEffect(() => {
+//similar to componentWillMount
+	return () =>{
+	console.log("..")
+}
+}, [])
+
+Recap 
+-refractoring an existing app
+
